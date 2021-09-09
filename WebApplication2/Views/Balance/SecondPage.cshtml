@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebApplication1.Models.UserBalance>
+
+@{
+    ViewBag.Title = "SecondPage";
+}
+
+<h2>Balance Page</h2>
+<br>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Balance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <input type="button" value="Change Balance" onclick="location.href='@Url.Action("Add", "Balance")'"  class="btn btn-info size" style='width:150px'/>
+            </td>
+        </tr>
+
+    }
+</table>
+
+
+<div>
+    @Html.ActionLink("Forget Password?", "index", "ForgetPassword")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script> 
