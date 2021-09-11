@@ -88,6 +88,7 @@
     <Compile Include="Login\UserEquality.cs" />
     <Compile Include="Model\AddImageModel.cs" />
     <Compile Include="Model\RegistrationInfo.cs" />
+    <Compile Include="Model\SearchUser.cs" />
     <Compile Include="Model\UserBalance.cs" />
     <Compile Include="Model\UserInformation.cs" />
     <Compile Include="Pathing\GetPath.cs" />

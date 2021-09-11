@@ -2,3 +2,28 @@
     ViewBag.Title = "Home Page";
 }
 
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div style="margin-top: 50px; margin-bottom: 50px">
+        Search UserName  : @Html.TextBox("SearchValue")
+    </div>
+    <input type="submit" value="Search" class="btn col-sm-1 btn-success" />
+    <br />
+}
+
+@if (ViewBag.searchResult != null)
+{
+    <div style="margin-top: 50px">
+        <ul>
+            @foreach (var searchResult in ViewBag.searchResult)
+            {
+                <li style="margin-top: 10px; margin-bottom: 10px;">
+                    <a href="#">@searchResult.UserName</a>
+                </li>
+                <img src="@Url.Content(@searchResult.ImagePath)" style="width: 10%; height: 10%; margin-bottom: 20px"/>
+            }
+        </ul>
+    </div>
+}
+
+

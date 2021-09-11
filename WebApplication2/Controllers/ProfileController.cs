@@ -40,17 +40,23 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
-            string fileName = Path.GetFileNameWithoutExtension(file.FileName);
-            string extension = Path.GetExtension(file.FileName);
-            fileName = fileName + DateTime.Now.ToString("yyyyMMssff") + extension;
-            string ImagePath = "~/Image/" + fileName;
-            
-            
-            string rightPath = Path.Combine(Server.MapPath("~/Image"), GetPath.ProfileImage(file));
+            if (ModelState.IsValid)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
+                fileName = fileName + DateTime.Now.ToString("yyyyMMssff") + extension;
+                string ImagePath = "~/Image/" + fileName;
 
-            file.SaveAs(rightPath);
-            ImageOps.AddImage(new AddImageModel { 
-                ImagePath = rightPath, UserId = Int32.Parse(GetUserIdFromWebConfiguration.GetInfo()) });
+
+                string rightPath = Path.Combine(Server.MapPath("~/Image"), GetPath.ProfileImage(file));
+
+                file.SaveAs(rightPath);
+                ImageOps.AddImage(new AddImageModel
+                {
+                    ImagePath = rightPath,
+                    UserId = Int32.Parse(GetUserIdFromWebConfiguration.GetInfo())
+                });
+            }
                 
             return Redirect("profile/index");
         }
