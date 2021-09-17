@@ -1,6 +1,7 @@
 ﻿using ClassLibrary1.Login;
 using log4net;
 using System.Configuration;
+using System.Threading.Tasks;
 using System.Web.Configuration;
 
 namespace ClassLibrary1
@@ -43,7 +44,7 @@ namespace ClassLibrary1
 
         public static int CheckTokenValidation(int UserId)
         {
-            int returnedUserId = CheckToken.CheckTokenByUserId(UserId);
+            int returnedUserId = CheckToken.CheckTokenByUserIdAsync(UserId).Result;
             return returnedUserId;
         }
     }
