@@ -1,5 +1,6 @@
 ﻿using ClassLibrary1;
 using ClassLibrary1.InserOps;
+using ClassLibrary1.UserSession;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,8 @@ namespace WebApplication1.Controllers
         // GET: Balance
         public ActionResult Index()
         {
-            if (GetUserIdFromWebConfiguration.CheckTokenValidation(Int32.Parse(GetUserIdFromWebConfiguration.GetInfo())) == 0)
+            if (!UserSession.CheckUserSessionValidation())
             {
-                GetUserIdFromWebConfiguration.ClearInfo();
                 return RedirectToRoute(new
                 {
                     controller = "Login",
@@ -28,9 +28,8 @@ namespace WebApplication1.Controllers
 
         public ActionResult SecondPage()
         {
-            if (GetUserIdFromWebConfiguration.CheckTokenValidation(Int32.Parse(GetUserIdFromWebConfiguration.GetInfo())) == 0)
+            if (!UserSession.CheckUserSessionValidation())
             {
-                GetUserIdFromWebConfiguration.ClearInfo();
                 return RedirectToRoute(new
                 {
                     controller = "Login",
@@ -44,9 +43,8 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Add()
         {
-            if (GetUserIdFromWebConfiguration.CheckTokenValidation(Int32.Parse(GetUserIdFromWebConfiguration.GetInfo())) == 0)
+            if (!UserSession.CheckUserSessionValidation())
             {
-                GetUserIdFromWebConfiguration.ClearInfo();
                 return RedirectToRoute(new
                 {
                     controller = "Login",
@@ -59,9 +57,8 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Add(Balance b)
         {
-            if (GetUserIdFromWebConfiguration.CheckTokenValidation(Int32.Parse(GetUserIdFromWebConfiguration.GetInfo())) == 0)
+            if (!UserSession.CheckUserSessionValidation())
             {
-                GetUserIdFromWebConfiguration.ClearInfo();
                 return RedirectToRoute(new
                 {
                     controller = "Login",
@@ -75,6 +72,5 @@ namespace WebApplication1.Controllers
             log.Debug($"Users Balance and description Changed: \nbalance: {uB.Balance}\ndescription: {uB.Description}.");
             return Redirect("SecondPage");
         }
-
     }
 }

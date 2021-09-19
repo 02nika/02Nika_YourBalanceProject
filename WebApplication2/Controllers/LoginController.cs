@@ -22,7 +22,7 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserInformation Ui = CheckLoginInfo.UserExist(Lf.UserName, Lf.Password);
+                UserInformation Ui = CheckLoginInfo.IfUserExistInsertToken(Lf.UserName, Lf.Password);
                 if (Ui == null)
                 {
                     log.Debug($"User doesn't exist. \nused username: {Lf.UserName}\npassword: {Lf.Password}");
@@ -32,8 +32,6 @@ namespace WebApplication1.Controllers
                         action = "Index",
                     });
                 }
-
-                int userId = InsertLoginT.InsertToken(Ui.UserId);
 
                 GetUserIdFromWebConfiguration.SetInfo(Ui.UserId);
                 log.Debug($"UserId with new Session: {Ui.UserId}");

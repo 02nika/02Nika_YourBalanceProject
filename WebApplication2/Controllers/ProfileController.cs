@@ -2,6 +2,7 @@
 using ClassLibrary1.InserOps;
 using ClassLibrary1.Model;
 using ClassLibrary1.Pathing;
+using ClassLibrary1.UserSession;
 using log4net;
 using System;
 using System.IO;
@@ -17,10 +18,8 @@ namespace WebApplication2.Controllers
         public ActionResult Index()
         {
             int userId = Int32.Parse(GetUserIdFromWebConfiguration.GetInfo());
-            if (GetUserIdFromWebConfiguration.CheckTokenValidation(userId) == 0)
+            if (!UserSession.CheckUserSessionValidation())
             {
-                GetUserIdFromWebConfiguration.ClearInfo();
-                log.Debug($"there is no session. redirecting to login page.");
                 return RedirectToRoute(new
                 {
                     controller = "Login",
@@ -65,10 +64,8 @@ namespace WebApplication2.Controllers
         public ActionResult Remove()
         {
             int userId = Int32.Parse(GetUserIdFromWebConfiguration.GetInfo());
-            if (GetUserIdFromWebConfiguration.CheckTokenValidation(userId) == 0)
+            if (!UserSession.CheckUserSessionValidation())
             {
-                GetUserIdFromWebConfiguration.ClearInfo();
-                log.Debug($"there is no session. redirecting to login page.");
                 return RedirectToRoute(new
                 {
                     controller = "Login",

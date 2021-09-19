@@ -1,4 +1,5 @@
 ﻿using ClassLibrary1;
+using ClassLibrary1.UserSession;
 using ClassLibrary1.GetData;
 using ClassLibrary1.Model;
 using log4net;
@@ -15,10 +16,8 @@ namespace WebApplication2.Controllers
         public ActionResult Index()
         {
             log.Debug("Home Page!!!");
-            if (GetUserIdFromWebConfiguration.CheckTokenValidation(Int32.Parse(GetUserIdFromWebConfiguration.GetInfo())) == 0)
+            if (!UserSession.CheckUserSessionValidation())
             {
-                GetUserIdFromWebConfiguration.ClearInfo();
-                log.Debug($"there is no session. redirecting to login page.");
                 return RedirectToRoute(new
                 {
                     controller = "Login",
@@ -50,9 +49,8 @@ namespace WebApplication2.Controllers
 
         public ActionResult About()
         {
-            if (GetUserIdFromWebConfiguration.CheckTokenValidation(Int32.Parse(GetUserIdFromWebConfiguration.GetInfo())) == 0)
+            if (!UserSession.CheckUserSessionValidation())
             {
-                GetUserIdFromWebConfiguration.ClearInfo();
                 return RedirectToRoute(new
                 {
                     controller = "Login",
@@ -67,9 +65,8 @@ namespace WebApplication2.Controllers
 
         public ActionResult Contact()
         {
-            if (GetUserIdFromWebConfiguration.CheckTokenValidation(Int32.Parse(GetUserIdFromWebConfiguration.GetInfo())) == 0)
+            if (!UserSession.CheckUserSessionValidation())
             {
-                GetUserIdFromWebConfiguration.ClearInfo();
                 return RedirectToRoute(new
                 {
                     controller = "Login",
