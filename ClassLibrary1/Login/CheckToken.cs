@@ -50,7 +50,7 @@ namespace ClassLibrary1.Login
             }
             catch
             {
-                log.Debug("failed\n\tCheckAndGetTokenValidationWithUserId doesn't worked");
+                log.Error("failed\n\tCheckAndGetTokenValidationWithUserId doesn't worked");
                 return default(int);
             }
 

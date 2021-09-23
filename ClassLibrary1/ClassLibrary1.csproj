@@ -76,7 +76,6 @@
   <ItemGroup>
     <Compile Include="Change\ChangeData.cs" />
     <Compile Include="ConnectionWithDb.cs" />
-    <Compile Include="GetData\DataAccess.cs" />
     <Compile Include="GetData\UserInformation.cs" />
     <Compile Include="GetUserIdFromWebConfiguration.cs" />
     <Compile Include="InserOps\ImageOps.cs" />
