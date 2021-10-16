@@ -69,7 +69,7 @@ namespace WebApplication1.Controllers
             UserBalance uB = new UserBalance() { Balance = b.InputBalance, Description = b.Description, UserId = Int32.Parse(GetUserIdFromWebConfiguration.GetInfo()) };
             InsertIntoBalanceTable.ChangeBalance(uB);
 
-            log.Debug($"Users Balance and description Changed: \nbalance: {uB.Balance}\ndescription: {uB.Description}.");
+            log.Warn($"Users Balance and description Changed: \nbalance: {uB.Balance}\ndescription: {uB.Description}.");
             return Redirect("SecondPage");
         }
     }

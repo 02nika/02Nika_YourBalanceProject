@@ -15,7 +15,7 @@ namespace WebApplication2.Controllers
 
         public ActionResult Index()
         {
-            log.Debug("Home Page!!!");
+            log.Info("Home Page!!!");
             if (!UserSession.CheckUserSessionValidation())
             {
                 return RedirectToRoute(new

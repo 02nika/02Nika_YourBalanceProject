@@ -21,17 +21,17 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Index(RegistrationInfo registrationInfo)
         {
-            log.Debug($"new registration Attempt: \nBalance:{registrationInfo.Balance}, \nUsername: {registrationInfo.UserName}, \ndescription: {registrationInfo.Desc}");
+            log.Info($"new registration Attempt: \nBalance:{registrationInfo.Balance}, \nUsername: {registrationInfo.UserName}, \ndescription: {registrationInfo.Desc}");
             if (registrationInfo.Password != registrationInfo.RepeatPassword)
             {
-                log.Debug($"password do not match {registrationInfo.Password} - {registrationInfo.RepeatPassword}");
+                log.Warn($"password do not match {registrationInfo.Password} - {registrationInfo.RepeatPassword}");
                 ViewBag.DoNotMatchmsg = "password do not match!";
                 return View();
             }
 
             if(UserInformation.UserExist(registrationInfo.UserName))
             {
-                log.Debug($"Username exist already: {registrationInfo.UserName}");
+                log.Warn($"Username exist already: {registrationInfo.UserName}");
                 ViewBag.DoNotMatchmsg = "UserName Already exist!";
                 return View();
             }

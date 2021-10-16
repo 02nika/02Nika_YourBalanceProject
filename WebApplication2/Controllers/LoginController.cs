@@ -25,7 +25,7 @@ namespace WebApplication1.Controllers
                 UserInformation Ui = CheckLoginInfo.IfUserExistInsertToken(Lf.UserName, Lf.Password);
                 if (Ui == null)
                 {
-                    log.Debug($"User doesn't exist. \nused username: {Lf.UserName}\npassword: {Lf.Password}");
+                    log.Warn($"User doesn't exist. \nused username: {Lf.UserName}\npassword: {Lf.Password}");
                     return RedirectToRoute(new
                     {
                         controller = "Login",
@@ -34,14 +34,14 @@ namespace WebApplication1.Controllers
                 }
 
                 GetUserIdFromWebConfiguration.SetInfo(Ui.UserId);
-                log.Debug($"UserId with new Session: {Ui.UserId}");
+                log.Info($"UserId with new Session: {Ui.UserId}");
                 return RedirectToRoute(new
                 {
                     controller = "Home",
                     action = "Index",
                 });
             }
-            log.Debug("Login modelstate is not valid");
+            log.Warn("Login modelstate is not valid");
             return View();
         }
     }

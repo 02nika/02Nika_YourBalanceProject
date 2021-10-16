@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
                 ChangeData.ChangeUserPassword(Int32.Parse(GetUserIdFromWebConfiguration.GetInfo()),
                                               FEFM.NewPassword);
                 GetUserIdFromWebConfiguration.SetInfo(UserId);
-                log.Debug($"User {FEFM.UserName} now changed password.");
+                log.Info($"User {FEFM.UserName} now changed password.");
                 return Redirect("Home/Index");
             }
             return Redirect("ForgetPassword/Index");
